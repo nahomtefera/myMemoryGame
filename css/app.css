@@ -1,0 +1,103 @@
+.title {
+    text-align: center;    
+    padding: 25px 0;
+    padding-bottom: 5px;
+    font-family: "Raleway";
+    font-weight: 300;
+}
+
+.fa-star, .fa-star-half-o, .fa-star-o {
+    font-size: 2.6em;
+    color: #f9f929;
+}
+
+.fa-refresh{
+    font-size: 2em;
+    color: #48a7ea;
+    float: right;
+    cursor: pointer;
+}
+
+.moves-number{
+    font-family: Raleway;
+    font-size: 2.6em;
+    padding-left: 10px;
+}
+
+.stars-moves-container {
+    width: 600px;
+    margin: 0 auto;
+    padding: 10px 80px;
+}
+
+.deck {
+    width: 600px;
+    margin: 0 auto;
+    -webkit-perspective: 700;
+    -moz-perspective: 700;
+    -o-perspective: 700;
+    perspective: 700;
+    padding: 0;
+    text-align: center;
+}
+
+.card {
+    text-align: center;
+    width: 125px;
+    height: 125px;
+    list-style: none;
+    display: inline-block;
+    margin-top: 4px;
+    background: #d4ffd1;
+    transition: all 0.5s ease;
+    transform-style: preserve-3d;
+    border-radius: 10px;
+}
+
+.flipped {
+    transform: rotateY(180deg);    
+}
+
+.card .fa {
+    font-size: 3em;
+    line-height: 125px;
+    color: #d4ffd1;
+    transition: all 1s ease;    
+}
+
+.modal-title {
+    text-align: center;
+    font-family: "Raleway";
+    font-weight: 700;
+    font-size: 2em;
+}
+
+.modal-body .stars-moves-container {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.modal-text {
+    font-size: 1.5em;
+    font-family: "Raleway";
+    font-weight: 700;
+    text-align: center;
+}
+
+.finish-time {
+    font-size: 2em;
+    color: cadetblue;
+}
+
+.modal-footer{
+    text-align: center;
+}
+
+.btn{
+    font-family: Raleway;
+    font-weight: 700;
+    text-transform: uppercase;
+}
