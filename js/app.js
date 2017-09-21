@@ -1,38 +1,27 @@
+let cards, cardID, firstCard, clickFlag, secondCard, _oldThis, clickDisabled, score, end_time, start_time, moves;
+
 //Suffle Cards
-let cards = $(".deck").children();
-let cardID = ["fa fa-free-code-camp", "fa fa-bicycle", "fa fa-snowflake-o", "fa fa-anchor", "fa fa-bank", "fa fa-bed", "fa fa-binoculars", "fa fa-birthday-cake", "fa fa-free-code-camp", "fa fa-bicycle", "fa fa-snowflake-o", "fa fa-anchor", "fa fa-bank", "fa fa-bed", "fa fa-binoculars", "fa fa-birthday-cake"];
-
-function shuffleCards(arr){      
-    for (let i = 0; i < arr.length; i++){
-        randomIcon = Math.floor(Math.random() * cardID.length );
-        document.getElementById("card-deck").children[i].children[0].className = cardID[randomIcon];
-        cardID.splice(randomIcon, 1);//Remove ID that has been assigned
-    }
-    // Now we are going to 
-    cardID = ["fa fa-free-code-camp", "fa fa-bicycle", "fa fa-snowflake-o", "fa fa-anchor", "fa fa-bank", "fa fa-bed", "fa fa-binoculars", "fa fa-birthday-cake", "fa fa-free-code-camp", "fa fa-bicycle", "fa fa-snowflake-o", "fa fa-anchor", "fa fa-bank", "fa fa-bed", "fa fa-binoculars", "fa fa-birthday-cake"];
-}
-
+cards = $(".deck").children();
 shuffleCards(cards);
-
-let firstCard, clickFlag, secondCard, _oldThis, clickDisabled, score, end_time, start_time, moves;
 
 moves = 0;
 timeFlag = 0;
 score = 0;
 clickFlag = 0;
 _oldThis = null;
+
 // Click functionality
 $(".card").click(function(){
     //Start time
     if(timeFlag === 0){
         start_time = Date.now();
-        console.log(start_time);
         timeFlag = 1; 
     }
     _this = $(this);    
     //flip card
     _this.addClass("flipped"); 
     _this.children(".fa").css("color", "#ff6464");
+    
     // if the car already has a pair, clicking on it won't do anything
     if(_this.hasClass("paired")){
         return;
@@ -42,27 +31,22 @@ $(".card").click(function(){
         firstCard = $(this);
         clickFlag = 1;        
     } else {
-        moves++;
-        ratingStars();
-        $(".moves-number").html(moves);
-        $( ".card" ).click(function( event ) {
-            return;
-          });
         secondCard = _this;
         //check that we are not chosing the same card twice and compare
-        if(firstCard.children().attr("class") == secondCard.children().attr("class") && firstCard.attr("id")  !== secondCard.attr("id")){
-           
+        if(firstCard.attr("id") === _this.attr("id")){            
+            return;
+        }else if(firstCard.children().attr("class") == secondCard.children().attr("class") && firstCard.attr("id")  !== secondCard.attr("id")){
             firstCard.addClass("paired");
             secondCard.addClass("paired");
-
+            increaseMoves();
             score++;
         //Check if the game is done
             setTimeout(function(){
                 winning();                
             }, 1000);
-            console.log("Awesome Job");
         }else if (firstCard.children().attr("class") !== secondCard.children().attr("class")) {
             
+            increaseMoves();
             setTimeout(function(){
                 firstCard.removeClass("flipped");
                 firstCard.children(".fa").css("color", $(".card").css("background-color"));
@@ -74,8 +58,6 @@ $(".card").click(function(){
         }
         clickFlag = 0;
     }
-
-    console.log(firstCard, secondCard)
 });
 
 $("#restart-game").click(function(){
@@ -84,6 +66,19 @@ $("#restart-game").click(function(){
 $("#play-again").click(function(){
     playAgain();
 });
+
+// Suffle cards
+function shuffleCards(arr){    
+    cardID = ["fa fa-free-code-camp", "fa fa-bicycle", "fa fa-snowflake-o", "fa fa-anchor", "fa fa-bank", "fa fa-bed", "fa fa-binoculars", "fa fa-birthday-cake", "fa fa-free-code-camp", "fa fa-bicycle", "fa fa-snowflake-o", "fa fa-anchor", "fa fa-bank", "fa fa-bed", "fa fa-binoculars", "fa fa-birthday-cake"];
+    
+    for (let i = 0; i < arr.length; i++){
+        randomIcon = Math.floor(Math.random() * cardID.length );
+        document.getElementById("card-deck").children[i].children[0].className = cardID[randomIcon];
+        cardID.splice(randomIcon, 1);//Remove ID that has been assigned
+    }
+    // Put back the cards in a deck
+    cardID = ["fa fa-free-code-camp", "fa fa-bicycle", "fa fa-snowflake-o", "fa fa-anchor", "fa fa-bank", "fa fa-bed", "fa fa-binoculars", "fa fa-birthday-cake", "fa fa-free-code-camp", "fa fa-bicycle", "fa fa-snowflake-o", "fa fa-anchor", "fa fa-bank", "fa fa-bed", "fa fa-binoculars", "fa fa-birthday-cake"];
+}
 
 // Restart Game
 function playAgain(){
@@ -150,4 +145,10 @@ function ratingStars(){
         $(".1-star").removeClass("fa-star-half-o");
         $(".1-star").addClass("fa-star-o");
     }
+}
+
+function increaseMoves(){
+    moves++;
+    ratingStars();
+    $(".moves-number").html(moves);
 }
