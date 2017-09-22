@@ -163,12 +163,6 @@ $( document ).ready(function(){
         } else if (moves > 20  && moves <= 22){
             $(".2-stars").removeClass("fa-star-half-o");
             $(".2-stars").addClass("fa-star-o");
-        } else if (moves > 22  && moves <= 24) {
-            $(".1-star").removeClass("fa-star");
-            $(".1-star").addClass("fa-star-half-o");
-        } else if (25 < moves ){
-            $(".1-star").removeClass("fa-star-half-o");
-            $(".1-star").addClass("fa-star-o");
         }
     }
     
@@ -181,7 +175,7 @@ $( document ).ready(function(){
 // Square cards
     $(".card").css("height", $(".card").css("width")); 
     $(".card .fa").css("line-height", $(".card").css("height"));
-    
+
     $( window ).resize(function() {
         $(".card").css("height", $(".card").css("width")); 
         $(".card .fa").css("line-height", $(".card").css("height"));        
