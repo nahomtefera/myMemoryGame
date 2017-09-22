@@ -112,10 +112,13 @@ function winning(){
 }
 // Milliseconds to minutes and seconds.
 function millisToMinutesAndSeconds(millis) {
+
     var minutes = Math.floor(millis / 60000);
     var seconds = ((millis % 60000) / 1000).toFixed(0);
+    console.log(minutes + "min and " + (seconds < 10 ? '0' : '') + seconds + "s");
     return minutes + "min and " + (seconds < 10 ? '0' : '') + seconds + "s";
 }
+// Timer
 
 // Stars
 function ratingStars(){
