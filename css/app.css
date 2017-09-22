@@ -1,6 +1,6 @@
 .title {
     text-align: center;    
-    padding: 25px 0;
+    padding: 0 0;
     padding-bottom: 5px;
     font-family: "Raleway";
     font-weight: 300;
@@ -28,6 +28,13 @@
     width: 600px;
     margin: 0 auto;
     padding: 10px 80px;
+}
+
+.timer {
+    text-align: center;
+    font-size: 1.6em;
+    font-family: "Raleway";
+    font-weight: 700;
 }
 
 .deck {

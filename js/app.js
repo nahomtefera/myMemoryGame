@@ -1,4 +1,4 @@
-let cards, cardID, firstCard, clickFlag, secondCard, _oldThis, clickDisabled, score, end_time, start_time, moves;
+let timer_min, min_interval, sec_interval, timer_sec, cards, cardID, firstCard, clickFlag, secondCard, _oldThis, clickDisabled, score, end_time, start_time, moves;
 
 //Suffle Cards
 cards = $(".deck").children();
@@ -95,7 +95,14 @@ function playAgain(){
     }, 1000);  
     moves = 0;    
     $(".moves-number").html(moves);    
-    ratingStars();    
+    ratingStars();
+    clearInterval(min_interval); //stop timer
+    clearInterval(sec_interval); //stop timer        
+    $(".timer-min").html("0");     
+    $(".timer-sec").html("0");
+
+    timer_min = 0;
+    timer_sec = 0;    
     firstCard = null;
     secondCard = null;
     timeFlag = 0;
@@ -107,41 +114,30 @@ function playAgain(){
 //winning
 function winning(){
     if (score === 8){
-        end_time = Date.now();
-        final_time = end_time - start_time;
-
+        clearInterval(min_interval); //stop timer
+        clearInterval(sec_interval); //stop timer
+        
         $("#myModal").modal();
-        $(".finish-time").html(millisToMinutesAndSeconds(final_time));
+        $(".finish-time").html(timer_min + "min and " + timer_sec +"s" );
     }
-}
-// Milliseconds to minutes and seconds.
-function millisToMinutesAndSeconds(millis) {
-
-    var minutes = Math.floor(millis / 60000);
-    var seconds = ((millis % 60000) / 1000).toFixed(0);
-    console.log(minutes + "min and " + (seconds < 10 ? '0' : '') + seconds + "s");
-    return minutes + "min and " + (seconds < 10 ? '0' : '') + seconds + "s";
 }
 
 // Timer
 function startTimer(){
-        timer_min = 0;
-        timer_sec = 0;
-    setInterval(function(){
-        console.log(timer_min);        
-        timer_min++;
-        $(".timer-min").html(timer_min);        
-    }, 60000);
-
-    setInterval(function(){
-        timer_sec++;
-        if(timer_sec === 60){
-            timer_sec = 0;
-        }
-        console.log(timer_sec);
-        $(".timer-sec").html(timer_sec);
-    }, 1000);
-
+        min_interval = setInterval(function(){
+            console.log(timer_min);        
+            timer_min++;
+            $(".timer-min").html(timer_min); 
+        }, 60000);
+    
+        sec_interval = setInterval(function(){
+            timer_sec++;
+            if(timer_sec === 60){
+                timer_sec = 0;
+            }
+            console.log(timer_sec);
+            $(".timer-sec").html(timer_sec);
+        }, 1000);
 };
 
 // Stars
