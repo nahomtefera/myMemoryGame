@@ -9,12 +9,16 @@ timeFlag = 0;
 score = 0;
 clickFlag = 0;
 _oldThis = null;
+timer_min = 0;
+timer_sec = 0;
 
 // Click functionality
 $(".card").click(function(){
     //Start time
     if(timeFlag === 0){
         start_time = Date.now();
+        startTimer();
+
         timeFlag = 1; 
     }
     _this = $(this);    
@@ -118,7 +122,27 @@ function millisToMinutesAndSeconds(millis) {
     console.log(minutes + "min and " + (seconds < 10 ? '0' : '') + seconds + "s");
     return minutes + "min and " + (seconds < 10 ? '0' : '') + seconds + "s";
 }
+
 // Timer
+function startTimer(){
+        timer_min = 0;
+        timer_sec = 0;
+    setInterval(function(){
+        console.log(timer_min);        
+        timer_min++;
+        $(".timer-min").html(timer_min);        
+    }, 60000);
+
+    setInterval(function(){
+        timer_sec++;
+        if(timer_sec === 60){
+            timer_sec = 0;
+        }
+        console.log(timer_sec);
+        $(".timer-sec").html(timer_sec);
+    }, 1000);
+
+};
 
 // Stars
 function ratingStars(){
