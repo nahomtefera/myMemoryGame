@@ -1,3 +1,8 @@
+header {
+    width: 100%;
+    text-align: center;    
+}
+
 .title {
     text-align: center;    
     padding: 0 0;
@@ -35,6 +40,7 @@
     font-size: 1.6em;
     font-family: "Raleway";
     font-weight: 700;
+    width: 100%;
 }
 
 .deck {
@@ -110,4 +116,21 @@
     font-family: Raleway;
     font-weight: 700;
     text-transform: uppercase;
+}
+
+@media screen and (max-width: 650px) {
+
+    .deck {
+        width: 100%;
+    }
+
+    .card {
+        width: 21%;
+    }
+
+    .stars-moves-container {
+        width: 100%;
+        padding: 10px 25px;
+    }
+
 }
